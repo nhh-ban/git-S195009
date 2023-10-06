@@ -5,7 +5,7 @@ This is the first assignment in BAN400. As you know -- given that you have come 
 **Date:**
 06.10.2023
 **Name:**
-Martin Kleppe
+Martin Kleppe testy testy tasty banana
 **Student number:**
 s195009
 ## :information_source: Problem 1
