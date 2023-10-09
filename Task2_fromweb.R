@@ -20,8 +20,8 @@ page_data = readLines('http://www.sao.ru/lv/lvgdb/article/suites_dw_Table1.txt',
 substr(x = page_data, start = 1, stop = 2)
 
 # The next step is then to find out *which* line starts with "--", and pick out
-# the first one. This can be done in a nice little pipe, where you have to fill
-# out the question marks and the missing function names:
+# the first one. This can be done in a nice little pipe:
+
 L <- 
   (substr(x = page_data, start = 1, stop = 2) == "--") %>% 
   which() %>% 
