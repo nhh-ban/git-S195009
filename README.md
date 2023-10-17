@@ -11,6 +11,8 @@ s195009
 ## :information_source: Problem 1
 Update the personal information above.
 
+NOTE: Due to issues with delivery this assignment is being reuploaded in case of any version issues - current date is 17.10.2023.
+
 ## :milky_way: Problem 2
 In this problem, we will investigate our immediate neighborhood -- more precisely, a list of galaxies within 11 megaparsecs from us. This is about 30 million light-years. The data is described  [here](http://www.sao.ru/lv/lvgdb/article/1538-3881_145_4_101.pdf), which is a follow up to [this](https://iopscience.iop.org/article/10.1086/382905) 2004 paper in the Astronomical Journal. The list, along with several characteristics of the galaxies, can be found in plain text format [here](http://www.sao.ru/lv/lvgdb/article/suites_dw_Table1.txt). This text file is also included in this repository if the link changes or dies in the future.
 

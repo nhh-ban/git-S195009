@@ -33,7 +33,8 @@ L <-
 # "raw_file"-vector on a separate line we also provide the sep-argument, where
 # we put the "end-of-line"-character "\n". We also need to come up with a file
 # name. Replace the question marks:
-cat(page_data, sep = "\n", file = "page_data.txt")
+
+cat(page_data[1:(L-2)], sep = "\n", file = "page_data.txt")
 
 # Extract the variable names and store the names in a vector.
 
@@ -46,7 +47,7 @@ variable_names <-
 # Read the data into a csv file
 
 csv <- 
-  page_data %>% 
+  page_data [(L+1):length(page_data)]%>% 
   gsub("\\|", ",", .) %>% 
   gsub(" ", "", .)
 
@@ -54,15 +55,11 @@ csv <-
 
 csv_names <- 
   c(paste(variable_names, collapse = ","),
-    comma_separated_values)    
+    csv)    
 
 # Saving data into CSV file
-cat(csv_names, sep = "\n", file = "galaxy_data")
+cat(csv_names, sep = "\n", file = "galaxy_data.csv")
 
 # Read the file back in as a normal csv-file
-galaxies_page <- read_csv("galaxy_data")
-
-
-#As of March 2022 it should contain 796 observations -> But my data frame only includes 763, no matter how I read it (table or website)
-
+galaxies_page <- read_csv("galaxy_data.csv")
 
