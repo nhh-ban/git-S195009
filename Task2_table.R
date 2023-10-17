@@ -5,7 +5,7 @@
 # More detailed steps to complete Problem 1.
 install.packages("tidyverse")
 install.packages("dplyr")
-library(tidyverse)    # Contains most of what we need.
+library(tidyverse)
 library (dplyr)
 
 # Read the entire data file into memory using the readLines()-function. Use the
@@ -18,8 +18,8 @@ library (dplyr)
 # the file does not end with an "end of line"-character (EOL). This does not
 # seem to pose a problem later, and it seems that we can silece the warning by
 # switchin off the "warn"-argument. Do that if you wish.
+
 raw_file <- readLines("UCNG_Table4.txt", warn = FALSE)
-page_data = readLines('http://www.sao.ru/lv/lvgdb/article/suites_dw_Table1.txt', warn = FALSE)
 
 
 # Identify the line number L of the separator line between the column names and
@@ -36,17 +36,11 @@ page_data = readLines('http://www.sao.ru/lv/lvgdb/article/suites_dw_Table1.txt',
 # What do you need to replace the two question marks with in order to extract
 # the first two letters?
 substr(x = raw_file, start = 1, stop = 2)
-substr(x = page_data, start = 1, stop = 2)
 
 # The next step is then to find out *which* line starts with "--", and pick out
 # the first one. This can be done in a nice little pipe, where you have to fill
 # out the question marks and the missing function names:
 L <- 
-  (substr(x = raw_file, start = 1, stop = 2) == "--") %>% 
-  which() %>% 
-  min()
-
-L_page <- 
   (substr(x = raw_file, start = 1, stop = 2) == "--") %>% 
   which() %>% 
   min()
@@ -57,7 +51,8 @@ L_page <-
 # "raw_file"-vector on a separate line we also provide the sep-argument, where
 # we put the "end-of-line"-character "\n". We also need to come up with a file
 # name. Replace the question marks:
-cat(page_data, sep = "\n", file = "page_data")
+
+cat(raw_file, sep = "\n", file = "raw_data")
 
 # Extract the variable names (i.e. line (L-1)), store the names in a vector.
 
@@ -73,10 +68,6 @@ cat(page_data, sep = "\n", file = "page_data")
 # element out (check that!). We just unlist it to get out the vector. Then we
 # apply the str_trim()-function (also in the stringr-package) to get rid of all
 # the empty space. Replace the question mark below:
-variable_names <- 
-  str_split(string = ?, pattern = "\\|") %>% 
-  unlist() %>% 
-  str_trim()
 
 variable_names <- 
   str_split(string = raw_file[L-1], pattern = "\\|") %>% 
@@ -95,7 +86,7 @@ variable_names <-
 # super for this kind of search-and-replace. Replace the question mark below.
 
 csv <- 
-  raw_file %>% 
+  page_data %>% 
   gsub("\\|", ",", .) %>% 
   gsub(" ", "", .)
 
@@ -107,11 +98,10 @@ csv_names <-
   c(paste(variable_names, collapse = ","),
     comma_separated_values)    
 
-# Replace the question mark and come up with a file name
+# Saving data into CSV file
 cat(csv_names, sep = "\n", file = "galaxy_data")
 
-# Read the file back in as a normal csv-file. The readr-package is part of
-# tidyverse, so it is already loaded.
+# Read the file back in as a normal csv-file
 galaxies <- read_csv("galaxy_data")
 
 
